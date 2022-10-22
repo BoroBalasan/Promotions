@@ -33,7 +33,7 @@ _Installing and setting up app.
 
 The app has very ugly front-end part with only one index.html which you can use to upload your .csv files
 
-_Please use (localhost:1321) to upload your files_
+_Please use (localhost:1321) to upload your files_ . You can use Promotions\Resources\promotions.csv for test purposes .
 _Please use (localhost:1321/promotions?={ID}) to see promotion information were ID is Id column of the promotion_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
