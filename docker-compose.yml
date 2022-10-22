@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: "test_db"
+    platform: linux/x86_64
+    build:
+      context: .
+      dockerfile: db.Dockerfile
+    networks:
+      - default
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "secret"
+      MYSQL_DATABASE: "test"
+      MYSQL_USER: "tester"
+      MYSQL_PASSWORD: "secret"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command:
+      - '--local_infile=1'
+      - '--default-authentication-plugin=mysql_native_password'
+  api:
+    container_name:  "test_api"
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+    ports:
+      - "1321:1321"
+    depends_on:
+      - db
+    volumes:
+      - .:/app/
+
+networks:
+  default:
+volumes:
+  mysql_data:
